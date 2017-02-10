@@ -68,7 +68,6 @@ test_expect_success 'auto gc with too many loose objects does not attempt to cre
 '
 
 test_expect_success 'background auto gc does not run if gc.log is present and recent but does if it is old' '
-	keep=$(ls .git/objects/pack/*.pack|head -1|sed -e "s/pack$/keep/") &&
 	test_commit foo &&
 	test_commit bar &&
 	git repack &&

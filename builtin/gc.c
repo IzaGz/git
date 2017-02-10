@@ -105,9 +105,10 @@ static void process_log_file(void)
 			fp = fdopen(fd, "w");
 			fprintf(fp, _("Failed to fstat %s: %s"),
 				get_tempfile_path(&log_lock.tempfile),
-				strerror(errno));
+				strerror(saved_errno));
 			fclose(fp);
 			commit_lock_file(&log_lock);
+			errno = saved_errno;
 		}
 
 	} else if (st.st_size) {
